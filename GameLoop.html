@@ -1,0 +1,72 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>GameLoop Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="HTML5 GameLoop">
+    <meta name="author" content="UI Programming">
+
+	<meta name="theme-color" content="white" />
+
+    <!--StyleSheet-->
+    <link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/push.css">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+	
+	<link rel="apple-touch-icon" href="img/icons/152_152.png">
+	<meta name="theme-color" content="white" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="Battles of The Multiverse PWA (Progressive Web Application)">
+  
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-status-bar-style" content="black">
+	<meta name="mobile-web-app-title" content="Battles of The Multiverse PWA (Progressive Web Application)">
+  
+	<meta name="msapplication-TileImage" content="img/icons/144_144.png">
+	<meta name="msapplication-TileColor" content="#FFFFFF">
+	
+	<link rel="manifest" href="/manifest.json">
+	
+	<link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+	<link rel="icon" href="icon.ico" type="image/x-icon">
+
+</head>
+
+<body onload="onPageLoad()">
+
+    <canvas tabindex="0" id="game" width="800" height="500" style="border: black 1px solid;">
+        Oops! looks like your browser does not support canvas tag
+    </canvas>
+	
+	<audio src="./audio/lego-yoda-death-sound-effect.mp3" id="sound_of_death">
+        Your browser does not support the audio tag
+	</audio>
+	<table>
+        <tbody>
+			<tr>
+			    <td colspan="3"><canvas id="game"></canvas>
+				</td>
+			</tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><button onclick="setTimeout(buttonOnClick1,3000)" class="button green round">1</button></td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td><button onclick="setTimeout(buttonOnClick2,3000)" class="button blue round">2</button></td>
+                <td>&nbsp;</td>
+                <td><button onclick="setTimeout(buttonOnClick3,3000)" class="button red round">3</button></td>
+            </tr>
+        </tbody>
+    </table>
+	
+</body>
+
+    <!--JavaScript File-->
+    <script src="./js/script.js"></script>
+
+</html>

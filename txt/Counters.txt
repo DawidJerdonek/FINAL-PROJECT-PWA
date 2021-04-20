@@ -1,0 +1,27 @@
+     Battles Of The Multiverse
+	    Counters
+    Defence   	|        Offence	
+	   			
+  Magic Shield	| Plasma Sword = full damage
+  Magic Shield	| Element Rifle = no damage
+  Magic Shield	| Grenade = half damage
+
+ Crystal Shield	| Plasma Sword = half damage
+ Crystal Shield	| Element Rifle = full damage
+ Crystal Shield	| Grenade = no damage
+
+ Bubble Shield	| Crystal Blade = full damage
+ Bubble Shield	| CrossBow = no damage
+ Bubble Shield	| Magic Orb = half damage
+
+ Power Shield	| Crystal Blade = no damage
+ Power Shield	| CrossBow = half damage
+ Power Shield	| Magic Orb = full damage
+
+  Omni Blade  	| Crystal Blade = half damage
+  Omni Blade 	| CrossBow = full damage
+  Omni Blade 	| Magic Orb = no damage
+
+   Reinforced Shield 	| Plasma Sword = no damage
+   Reinforced Shield 	| Element Rifle = half damage
+   Reinforced Shield 	| Grenade = full damage
