@@ -2,6 +2,7 @@ var cacheName = 'dawidj-pwa';
 var filesToCache = [
   './',
   './index.html',
+  './GameLoop.html',
   './css/push.css',
   './js/script.js'
 ];
