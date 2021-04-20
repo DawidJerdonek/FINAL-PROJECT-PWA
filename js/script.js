@@ -418,7 +418,7 @@ function buttonOnClick2() //Defence Bubble Shield,Attack Grenade
 {
 
 	enemyChoose();
-	
+
 	if(defenceOrOffence == 0) //0 is for ATTACK
 	{
 		if(gameLost === false)
@@ -437,6 +437,7 @@ function buttonOnClick2() //Defence Bubble Shield,Attack Grenade
 			{
 				gameobjects[1].health = gameobjects[1].health - 5; //Grenade vs Crystal Shield
 			}
+
 		}
 		
 		defenceOrOffence = 1;
