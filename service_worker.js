@@ -1,9 +1,9 @@
 var cacheName = 'dawidj-pwa';
 var filesToCache = [
-  '/',
-  '/index.html',
-  '/css/push.css',
-  '/js/script.js'
+  './',
+  './index.html',
+  './css/push.css',
+  './js/script.js'
 ];
 
 // Cache contents when Offline See Cache
