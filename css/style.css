@@ -1,7 +1,15 @@
 img{
     width: 100%;
+	
 }
 
-/*canvas#game{
+canvas#game{
+
 	width: 60vw;
-}*/
+	left: 5%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+

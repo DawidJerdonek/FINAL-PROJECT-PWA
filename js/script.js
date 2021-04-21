@@ -187,7 +187,7 @@ function draw()
 	// Clear Canvas
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	
-	context.drawImage(backImage, -44, 0);
+	context.drawImage(backImage, -44, 0, backImage.width, backImage.height);
 	context.drawImage(weaponBarImage, 0, 361);
 
 	if(defenceOrOffence == 0) //0 is for ATTACK
