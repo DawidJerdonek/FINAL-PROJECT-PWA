@@ -10,6 +10,10 @@
  Crystal Shield	| Element Rifle = full damage
  Crystal Shield	| Grenade = no damage
 
+   Reinforced Shield 	| Plasma Sword = no damage
+   Reinforced Shield 	| Element Rifle = half damage
+   Reinforced Shield 	| Grenade = full damage
+
  Bubble Shield	| Crystal Blade = full damage
  Bubble Shield	| CrossBow = no damage
  Bubble Shield	| Magic Orb = half damage
@@ -18,10 +22,7 @@
  Power Shield	| CrossBow = half damage
  Power Shield	| Magic Orb = full damage
 
-  Omni Blade  	| Crystal Blade = half damage
-  Omni Blade 	| CrossBow = full damage
-  Omni Blade 	| Magic Orb = no damage
+  Multi Blade  	| Crystal Blade = half damage
+  Multi Blade 	| CrossBow = full damage
+  Multi Blade 	| Magic Orb = no damage
 
-   Reinforced Shield 	| Plasma Sword = no damage
-   Reinforced Shield 	| Element Rifle = half damage
-   Reinforced Shield 	| Grenade = full damage
