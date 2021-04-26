@@ -83,6 +83,9 @@ physicalShield.src = "./img/fantasy/defence/reinforced-shield.png"
 //Audio
 var deathSound = document.getElementById("sound_of_death");
 var music = document.getElementById("sound_of_battle");
+var complete = document.getElementById("win_sound");
+var counter = 0; //Used for stopping sounds
+
 
 //Healthbar1 positions
 var barX = 50;
@@ -123,10 +126,6 @@ var gameobjects = [player, new GameObject("NPC", "./img/enemyFinal.png", 384, 30
 // Process keyboard input event
 function input(event) 
 {
-    // Take Input from the Player
-    //console.log("Input");
-    // console.log("Event type: " + event.type);
-
     if (event.type === "keydown") {
         switch (event.keyCode) {
             case 37:
@@ -149,7 +148,7 @@ function input(event)
 	{
         gamerInput = new GamerInput("None"); //No Input
     }
-    // console.log("Gamer Input :" + gamerInput.action);
+
 }
 
 function update() 
@@ -198,29 +197,29 @@ function draw()
 				//Enemy
 				if(enemyRandom == 1)
 				{
-					context.drawImage(magicShield,345,220, 80,80); 
+					context.drawImage(magicShield,400,160, 140,180); 
 				}
 				else if(enemyRandom == 2)
 				{
-					context.drawImage(physicalShield,345,220, 80,80); 
+					context.drawImage(physicalShield,445,220, 80,90); 
 				}
 				else if(enemyRandom == 3)
 				{
-					context.drawImage(crystalShield,345,220, 175,100); 
+					context.drawImage(crystalShield,405,180, 100,175); 
 				}
 				
 				//Player
 				if(playerChoice == 1)
 				{
-					context.drawImage(particleRifle,50,225, 150,75);
+					context.drawImage(particleRifle,210,255, 120,45);
 				}
 				else if(playerChoice == 2)
 				{
-					context.drawImage(grenade,50,225, 150,75);
+					context.drawImage(grenade,230,275, 30,30);
 				}
 				else if(playerChoice == 3)
 				{
-					context.drawImage(plasmaBlade,50,225, 150,75);
+					context.drawImage(plasmaBlade,210,225, 150,75);
 				}
 			}		
 		}
@@ -236,7 +235,7 @@ function draw()
 			
 			//Fantasy Offence
 			context.drawImage(crystalBlade,645,420, 150,75);
-			context.drawImage(crossbow,420,415, 75,75);
+			context.drawImage(crossbow,440,415, 75,75);
 			context.drawImage(magicOrb,532,412, 90,90);
 			
 			//Icons 
@@ -252,30 +251,30 @@ function draw()
 				//Enemy
 				if(enemyRandom == 1)
 				{
-					context.drawImage(crossbow,345,220, 80,80); 
+					context.drawImage(crossbow,460,220, 80,80); 
 				}
 				else if(enemyRandom == 2)
 				{
-					context.drawImage(magicOrb,345,220, 80,80); 
+					context.drawImage(magicOrb,485,250, 40,40); 
 				}					
 				else if(enemyRandom == 3)
 				{
-					context.drawImage(crystalBlade,345,220, 175,100); 
+					context.drawImage(crystalBlade,360,220, 200,100); 
 				}
 					
 				
 				//Player
 				if(playerChoice == 1)
 				{
-					context.drawImage(omniBlade,50,225, 150,75);
+					context.drawImage(omniBlade,220,250, 120,45);
 				}
 				else if(playerChoice == 2)
 				{
-					context.drawImage(bubbleShield,50,225, 150,75);
+					context.drawImage(bubbleShield,130,190, 150,150);
 				}
 				else if(playerChoice == 3)
 				{
-					context.drawImage(redShield,50,225, 150,75);
+					context.drawImage(redShield,230,205, 100,140);
 				}
 			}
 		}
@@ -317,7 +316,6 @@ function draw()
 	{
 		context.font = "30px Georgia";
 		context.fillText("YOU WIN", 332, 300);
-		context.fillText("PRESS ANY BUTTON TO CONTINUE",150, 350);
 	}
 	if(gameLost === true)
 	{
@@ -330,7 +328,6 @@ function gameloop()
 {
     update();
     draw();
-    window.requestAnimationFrame(gameloop);
 }
 
 // Draw a HealthBar on Canvas, used to indicate players health
@@ -623,22 +620,26 @@ function winLoss() //Check for win or loss condition
 
 function loss()
 {
-	console.log("You Lost")
+	if(counter == 0) 
+	{
+		music.pause();
+		deathSound.play();
+		counter++;
+	}
 	gameLost = true;
 }
 
 function win()
 {
-	console.log("You Won")
+	if(counter == 0) 
+	{
+		music.pause();
+		deathSound.play();
+		complete.play();
+		counter++;
+	}
 	gameWon = true;
 }
 
-
-// Handle Active Browser Tag Animation
-window.requestAnimationFrame(gameloop);
-
-// Handle Keypressed
-window.addEventListener('keyup', input);
-window.addEventListener('keydown', input);
 
 
