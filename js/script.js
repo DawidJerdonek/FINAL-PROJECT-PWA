@@ -26,6 +26,7 @@ var enemyCurrent; // current time
 var gameWon = false;
 var gameLost = false;
 var pauseInput = false;
+var drawWeapons = false;
 
 var enemyRandom = 0; //Randomly chooses the enemy attack or defence
 
@@ -113,10 +114,10 @@ function GamerInput(input) {
 var gamerInput = new GamerInput("None"); //No Input
 
 // Default Player
-var player = new GameObject("Player", "./img/player.png", 384, 300, 200, 200);
+var player = new GameObject("Player", "./img/finalPlayer.png", 384, 300, 150, 220);
 
 // Gameobjects is a collection of the Actors within the game
-var gameobjects = [player, new GameObject("NPC", "./img/1to6.png", 384, 300, 600, 200)];
+var gameobjects = [player, new GameObject("NPC", "./img/enemyFinal.png", 384, 300, 500, 150)];
 
 // Process keyboard input event
 function input(event) 
@@ -253,7 +254,7 @@ function draw()
 				healthBar();
 				// Draw each player GameObject  (img, width, health, x, y)
 								//Image which we use - Allow image to animate using current frame    -    - draw using the width of each frame - the height of the image - position x       - position y     -
-				context.drawImage(gameobjects[i].img, (gameobjects[i].img.width /frames) * currentFrame, 0 ,(gameobjects[i].img.width /frames), gameobjects[i].img.height, gameobjects[i].x, gameobjects[i].y, 100, 100);
+				context.drawImage(gameobjects[i].img, gameobjects[i].x, gameobjects[i].y, 110, 120);
 
 			}
 		}
@@ -267,7 +268,7 @@ function draw()
 			{
 				healthBarTwo();
 				// Draw each enemy GameObject  (img, width, health, x, y)
-				context.drawImage(gameobjects[i].img, (gameobjects[i].img.width /enemyFrames) * enemyCurrentFrame, 0 ,(gameobjects[i].img.width /enemyFrames), gameobjects[i].img.height, gameobjects[i].x, gameobjects[i].y, 100, 100)
+				context.drawImage(gameobjects[i].img, gameobjects[i].x, gameobjects[i].y, 150, 200)
 
 			}
 		}
@@ -387,26 +388,57 @@ function buttonOnClick1() //Defence OmniBlade, Attack PlasmaRifle
 	{
 		pauseInput = true;
 		enemyChoose();
+		setTimeout(battle1,3000);
+		
+	}
+}
 
+function buttonOnClick2() //Defence Bubble Shield,Attack Grenade
+{
+	if(pauseInput === false)
+	{
+		pauseInput = true;
+		enemyChoose();
+		setTimeout(battle2,3000);
+		
+	}
+}
+
+function buttonOnClick3() //Defence Power Shield, Attack Plasma Blade
+{
+	if(pauseInput === false)
+	{
+		pauseInput = true;
+		enemyChoose();
+		setTimeout(battle3,3000);
+		
+	}
+}
+
+function battle1() //resets input and shows animation
+{
+	
 		if(defenceOrOffence == 0) //0 is for ATTACK
 		{
 			if(gameLost === false)
 			{
 				if(enemyRandom == 1)
 				{
-					//context.drawImage(particleRifle,300,225, 150,75);
+					context.drawImage(particleRifle,300,225, 150,75);
 					gameobjects[1].health = gameobjects[1].health - 5; //Element Rifle vs Magic Shield
 				}
 		
 				if(enemyRandom == 2)
 				{
 					//context.drawImage(particleRifle,10,425, 150,75);
+
 					gameobjects[1].health = gameobjects[1].health - 25; //Element Rifle vs Reinforced Shield
 				}
 		
 				if(enemyRandom == 3)
 				{
 					//context.drawImage(particleRifle,10,425, 150,75);
+					
 					gameobjects[1].health = gameobjects[1].health - 60; //Element Rifle vs Crystal Shield
 				}
 			}
@@ -425,27 +457,25 @@ function buttonOnClick1() //Defence OmniBlade, Attack PlasmaRifle
 		
 				if(enemyRandom == 2)
 				{
+
 					gameobjects[0].health = gameobjects[0].health - 5; //MultiBlade vs Magic Orb
 				}
 		
 				if(enemyRandom == 3)
 				{
+
 					gameobjects[0].health = gameobjects[0].health - 25; //MultiBlade vs Crystal Blade
 				}
 			}
 			
 			defenceOrOffence = 0;
 		}
-	}
+		
+	pauseInput = false;
 }
 
-function buttonOnClick2() //Defence Bubble Shield,Attack Grenade
+function battle2() //resets input and shows animation
 {
-	if(pauseInput === false)
-	{
-		pauseInput = true;
-		enemyChoose();
-		
 		if(defenceOrOffence == 0) //0 is for ATTACK
 		{
 			if(gameLost === false)
@@ -462,6 +492,7 @@ function buttonOnClick2() //Defence Bubble Shield,Attack Grenade
 			
 				if(enemyRandom == 3)
 				{
+
 					gameobjects[1].health = gameobjects[1].health - 5; //Grenade vs Crystal Shield
 				}
 
@@ -491,17 +522,12 @@ function buttonOnClick2() //Defence Bubble Shield,Attack Grenade
 			
 			defenceOrOffence = 0;
 		}
-	}
+	pauseInput = false;
 }
 
-function buttonOnClick3() //Defence Power Shield, Attack Plasma Blade
+function battle3() //resets input and shows animation
 {
-	if(pauseInput === false)
-	{
-		pauseInput = true;
-		enemyChoose();
-		
-		if(defenceOrOffence == 0) //0 is for ATTACK
+	if(defenceOrOffence == 0) //0 is for ATTACK
 		{
 			if(gameLost === false)
 			{
@@ -547,7 +573,7 @@ function buttonOnClick3() //Defence Power Shield, Attack Plasma Blade
 			
 			defenceOrOffence = 0;
 		}
-	}
+	pauseInput = false;
 }
 
 function winLoss() //Check for win or loss condition
