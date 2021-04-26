@@ -44,20 +44,27 @@
 	
 	<audio src="./audio/lego-yoda-death-sound-effect.mp3" id="sound_of_death">
         Your browser does not support the audio tag
+		
 	</audio>
+	
+	<audio src="./audio/The-Illusive-Man.mp3" id="sound_of_battle">
+        Your browser does not support the audio tag
+		
+	</audio>
+	
 	<table>
         <tbody>
 			<tr>
 			</tr>
             <tr>
                 <td>&nbsp;</td>
-                <td><button onclick="setTimeout(buttonOnClick1,3000)" class="button green round">1</button></td>
+                <td><button onclick="buttonOnClick1()" class="button green round">1</button></td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td><button onclick="setTimeout(buttonOnClick2,3000)" class="button blue round">2</button></td>
+                <td><button onclick="buttonOnClick2()" class="button blue round">2</button></td>
                 <td>&nbsp;</td>
-                <td><button onclick="setTimeout(buttonOnClick3,3000)" class="button red round">3</button></td>
+                <td><button onclick="buttonOnClick3()" class="button red round">3</button></td>
             </tr>
         </tbody>
     </table>

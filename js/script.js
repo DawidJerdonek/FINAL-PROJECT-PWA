@@ -25,6 +25,8 @@ var enemyCurrent; // current time
 
 var gameWon = false;
 var gameLost = false;
+var pauseInput = false;
+
 var enemyRandom = 0; //Randomly chooses the enemy attack or defence
 
 var defenceOrOffence = 1; //If 0 player is attacking if 1 player is defending
@@ -78,6 +80,7 @@ physicalShield.src = "./img/fantasy/defence/reinforced-shield.png"
 
 //Audio
 var deathSound = document.getElementById("sound_of_death");
+var music = document.getElementById("sound_of_battle");
 
 //Healthbar1 positions
 var barX = 50;
@@ -86,6 +89,8 @@ var barY = 10;
 //HealthBar2 positions
 var barTwoX = 450;
 var barTwoY = 10;
+
+music.play();
 
 //Game objects, player and enemy
 function GameObject(name, img, width, health, x, y) 
@@ -203,6 +208,14 @@ function draw()
 			context.drawImage(crystalShield,670,417, 75,75);
 			context.drawImage(magicShield,420,417, 75,75);
 			context.drawImage(physicalShield,540,415, 75,75);
+			
+			//Icons 
+			context.drawImage(crystalShield,34, 371, 29, 29);
+			context.drawImage(magicShield,135, 373, 30, 30);
+			context.drawImage(physicalShield,211, 372, 30, 30);
+			context.drawImage(crystalShield,246, 373, 29, 29);
+			context.drawImage(magicShield,325, 373, 30, 30);
+			context.drawImage(physicalShield,361, 372, 30, 30);
 		}
 	}
 	if(defenceOrOffence == 1) //1 is for DEFENCE
@@ -218,6 +231,14 @@ function draw()
 			context.drawImage(crystalBlade,645,420, 150,75);
 			context.drawImage(crossbow,420,415, 75,75);
 			context.drawImage(magicOrb,532,412, 90,90);
+			
+			//Icons 
+			context.drawImage(magicOrb,35, 370, 30, 30);
+			context.drawImage(crossbow,100, 373, 30, 30);
+			context.drawImage(crossbow,210, 373, 30, 30);
+			context.drawImage(crystalBlade,244,373, 40,30);
+			context.drawImage(crystalBlade,320,373, 40,30);
+			context.drawImage(magicOrb,363, 372, 30, 30);
 		}
 	}
 
@@ -362,160 +383,170 @@ function enemyChoose()
 
 function buttonOnClick1() //Defence OmniBlade, Attack PlasmaRifle
 {
-	enemyChoose();
-
-	if(defenceOrOffence == 0) //0 is for ATTACK
+	if(pauseInput === false)
 	{
-		if(gameLost === false)
-		{
-			if(enemyRandom == 1)
-			{
-				//context.drawImage(particleRifle,300,225, 150,75);
-				gameobjects[1].health = gameobjects[1].health - 5; //Element Rifle vs Magic Shield
-			}
-	
-			if(enemyRandom == 2)
-			{
-				//context.drawImage(particleRifle,10,425, 150,75);
-				gameobjects[1].health = gameobjects[1].health - 25; //Element Rifle vs Reinforced Shield
-			}
-	
-			if(enemyRandom == 3)
-			{
-				//context.drawImage(particleRifle,10,425, 150,75);
-				gameobjects[1].health = gameobjects[1].health - 60; //Element Rifle vs Crystal Shield
-			}
-		}
-		
-		defenceOrOffence = 1;
-	}
-	else if(defenceOrOffence == 1) //1 is for DEFENCE
-	{
-		if(gameWon === false)
-		{
-			if(enemyRandom == 1)
-			{
+		pauseInput = true;
+		enemyChoose();
 
-				gameobjects[0].health = gameobjects[0].health - 60; //MultiBlade vs Crossbow
-			}
-	
-			if(enemyRandom == 2)
+		if(defenceOrOffence == 0) //0 is for ATTACK
+		{
+			if(gameLost === false)
 			{
-				gameobjects[0].health = gameobjects[0].health - 5; //MultiBlade vs Magic Orb
-			}
-	
-			if(enemyRandom == 3)
-			{
-				gameobjects[0].health = gameobjects[0].health - 25; //MultiBlade vs Crystal Blade
-			}
-		}
+				if(enemyRandom == 1)
+				{
+					//context.drawImage(particleRifle,300,225, 150,75);
+					gameobjects[1].health = gameobjects[1].health - 5; //Element Rifle vs Magic Shield
+				}
 		
-		defenceOrOffence = 0;
+				if(enemyRandom == 2)
+				{
+					//context.drawImage(particleRifle,10,425, 150,75);
+					gameobjects[1].health = gameobjects[1].health - 25; //Element Rifle vs Reinforced Shield
+				}
+		
+				if(enemyRandom == 3)
+				{
+					//context.drawImage(particleRifle,10,425, 150,75);
+					gameobjects[1].health = gameobjects[1].health - 60; //Element Rifle vs Crystal Shield
+				}
+			}
+			
+			defenceOrOffence = 1;
+		}
+		else if(defenceOrOffence == 1) //1 is for DEFENCE
+		{
+			if(gameWon === false)
+			{
+				if(enemyRandom == 1)
+				{
+
+					gameobjects[0].health = gameobjects[0].health - 60; //MultiBlade vs Crossbow
+				}
+		
+				if(enemyRandom == 2)
+				{
+					gameobjects[0].health = gameobjects[0].health - 5; //MultiBlade vs Magic Orb
+				}
+		
+				if(enemyRandom == 3)
+				{
+					gameobjects[0].health = gameobjects[0].health - 25; //MultiBlade vs Crystal Blade
+				}
+			}
+			
+			defenceOrOffence = 0;
+		}
 	}
 }
 
 function buttonOnClick2() //Defence Bubble Shield,Attack Grenade
 {
-
-	enemyChoose();
-
-	if(defenceOrOffence == 0) //0 is for ATTACK
+	if(pauseInput === false)
 	{
-		if(gameLost === false)
+		pauseInput = true;
+		enemyChoose();
+		
+		if(defenceOrOffence == 0) //0 is for ATTACK
 		{
-			if(enemyRandom == 1)
+			if(gameLost === false)
 			{
-				gameobjects[1].health = gameobjects[1].health - 25; //Grenade vs Magic Shield
-			}
-		
-			if(enemyRandom == 2)
-			{
-				gameobjects[1].health = gameobjects[1].health - 60; //Grenade vs Reinforced Shield
-			}
-		
-			if(enemyRandom == 3)
-			{
-				gameobjects[1].health = gameobjects[1].health - 5; //Grenade vs Crystal Shield
-			}
+				if(enemyRandom == 1)
+				{
+					gameobjects[1].health = gameobjects[1].health - 25; //Grenade vs Magic Shield
+				}
+			
+				if(enemyRandom == 2)
+				{
+					gameobjects[1].health = gameobjects[1].health - 60; //Grenade vs Reinforced Shield
+				}
+			
+				if(enemyRandom == 3)
+				{
+					gameobjects[1].health = gameobjects[1].health - 5; //Grenade vs Crystal Shield
+				}
 
+			}
+			
+			defenceOrOffence = 1;
 		}
-		
-		defenceOrOffence = 1;
-	}
-	else if(defenceOrOffence == 1) //1 is for DEFENCE
-	{
-		if(gameWon === false)
+		else if(defenceOrOffence == 1) //1 is for DEFENCE
 		{
-			if(enemyRandom == 1)
+			if(gameWon === false)
 			{
-				gameobjects[0].health = gameobjects[0].health - 5; //Bubble Shield vs Crossbow
+				if(enemyRandom == 1)
+				{
+					gameobjects[0].health = gameobjects[0].health - 5; //Bubble Shield vs Crossbow
+				}
+			
+				if(enemyRandom == 2)
+				{
+					gameobjects[0].health = gameobjects[0].health - 25; //Bubble Shield vs Magic Orb
+				}
+			
+				if(enemyRandom == 3)
+				{
+					gameobjects[0].health = gameobjects[0].health - 60; //Bubble Shield vs Crystal Blade
+				}
 			}
-		
-			if(enemyRandom == 2)
-			{
-				gameobjects[0].health = gameobjects[0].health - 25; //Bubble Shield vs Magic Orb
-			}
-		
-			if(enemyRandom == 3)
-			{
-				gameobjects[0].health = gameobjects[0].health - 60; //Bubble Shield vs Crystal Blade
-			}
+			
+			defenceOrOffence = 0;
 		}
-		
-		defenceOrOffence = 0;
 	}
-	
 }
 
 function buttonOnClick3() //Defence Power Shield, Attack Plasma Blade
 {
-	enemyChoose();
-	
-	if(defenceOrOffence == 0) //0 is for ATTACK
+	if(pauseInput === false)
 	{
-		if(gameLost === false)
+		pauseInput = true;
+		enemyChoose();
+		
+		if(defenceOrOffence == 0) //0 is for ATTACK
 		{
-			if(enemyRandom == 1)
+			if(gameLost === false)
 			{
-				gameobjects[1].health = gameobjects[1].health - 60; //Plasma Blade vs Magic Shield
+				if(enemyRandom == 1)
+				{
+					gameobjects[1].health = gameobjects[1].health - 60; //Plasma Blade vs Magic Shield
+				}
+			
+				if(enemyRandom == 2)
+				{
+					gameobjects[1].health = gameobjects[1].health - 5; //Plasma Blade vs Reinforced Shield
+				}
+			
+				if(enemyRandom == 3)
+				{
+					gameobjects[1].health = gameobjects[1].health - 25; //Plasma Blade vs Crystal Shield
+				}
 			}
-		
-			if(enemyRandom == 2)
-			{
-				gameobjects[1].health = gameobjects[1].health - 5; //Plasma Blade vs Reinforced Shield
-			}
-		
-			if(enemyRandom == 3)
-			{
-				gameobjects[1].health = gameobjects[1].health - 25; //Plasma Blade vs Crystal Shield
-			}
-		}
-		
-		defenceOrOffence = 1;
+			
+			defenceOrOffence = 1;
 
-	}
-	else if(defenceOrOffence == 1) //1 is for DEFENCE
-	{
-		
-		if(gameWon === false)
-		{
-			if(enemyRandom == 1)
-			{
-				gameobjects[0].health = gameobjects[0].health - 25; //PowerShield vs Crossbow
-			}
-		
-			if(enemyRandom == 2)
-			{
-				gameobjects[0].health = gameobjects[0].health - 60; //PowerShield vs Magic Orb
-			}
-		
-			if(enemyRandom == 3)
-			{
-				gameobjects[0].health = gameobjects[0].health - 5; //PowerShield vs Crystal Blade
-			}
 		}
-		
-		defenceOrOffence = 0;
+		else if(defenceOrOffence == 1) //1 is for DEFENCE
+		{
+			
+			if(gameWon === false)
+			{
+				if(enemyRandom == 1)
+				{
+					gameobjects[0].health = gameobjects[0].health - 25; //PowerShield vs Crossbow
+				}
+			
+				if(enemyRandom == 2)
+				{
+					gameobjects[0].health = gameobjects[0].health - 60; //PowerShield vs Magic Orb
+				}
+			
+				if(enemyRandom == 3)
+				{
+					gameobjects[0].health = gameobjects[0].health - 5; //PowerShield vs Crystal Blade
+				}
+			}
+			
+			defenceOrOffence = 0;
+		}
 	}
 }
 
