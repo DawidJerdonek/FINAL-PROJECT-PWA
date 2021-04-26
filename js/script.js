@@ -29,6 +29,7 @@ var pauseInput = false;
 var drawWeapons = false;
 
 var enemyRandom = 0; //Randomly chooses the enemy attack or defence
+var playerChoice = 0; 
 
 var defenceOrOffence = 1; //If 0 player is attacking if 1 player is defending
 
@@ -153,33 +154,6 @@ function input(event)
 
 function update() 
 {
-    // Iterate through all GameObjects
-    // Updating position and gamestate
-    // console.log("Update");
-    
-    if (gamerInput.action === "Up") 
-	{
-
-		animate();
-    }
-		
-	if (gamerInput.action === "Left") 
-	{
-
-		animate();
-    }
-		
-	if (gamerInput.action === "Right") 
-	{
-		animate();
-    }
-		
-    if (gamerInput.action === "Down") 
-	{
-
-		animate();
-    }
-
 	healthBar();
 	healthBarTwo();
 	winLoss();
@@ -217,9 +191,41 @@ function draw()
 			context.drawImage(crystalShield,246, 373, 29, 29);
 			context.drawImage(magicShield,325, 373, 30, 30);
 			context.drawImage(physicalShield,361, 372, 30, 30);
+			
+			if(drawWeapons === true)
+			{
+				
+				//Enemy
+				if(enemyRandom == 1)
+				{
+					context.drawImage(magicShield,345,220, 80,80); 
+				}
+				else if(enemyRandom == 2)
+				{
+					context.drawImage(physicalShield,345,220, 80,80); 
+				}
+				else if(enemyRandom == 3)
+				{
+					context.drawImage(crystalShield,345,220, 175,100); 
+				}
+				
+				//Player
+				if(playerChoice == 1)
+				{
+					context.drawImage(particleRifle,50,225, 150,75);
+				}
+				else if(playerChoice == 2)
+				{
+					context.drawImage(grenade,50,225, 150,75);
+				}
+				else if(playerChoice == 3)
+				{
+					context.drawImage(plasmaBlade,50,225, 150,75);
+				}
+			}		
 		}
 	}
-	if(defenceOrOffence == 1) //1 is for DEFENCE
+	else if(defenceOrOffence == 1) //1 is for DEFENCE
 	{
 		if(gameWon === false && gameLost === false)
 		{
@@ -240,6 +246,38 @@ function draw()
 			context.drawImage(crystalBlade,244,373, 40,30);
 			context.drawImage(crystalBlade,320,373, 40,30);
 			context.drawImage(magicOrb,363, 372, 30, 30);
+			
+			if(drawWeapons === true)
+			{
+				//Enemy
+				if(enemyRandom == 1)
+				{
+					context.drawImage(crossbow,345,220, 80,80); 
+				}
+				else if(enemyRandom == 2)
+				{
+					context.drawImage(magicOrb,345,220, 80,80); 
+				}					
+				else if(enemyRandom == 3)
+				{
+					context.drawImage(crystalBlade,345,220, 175,100); 
+				}
+					
+				
+				//Player
+				if(playerChoice == 1)
+				{
+					context.drawImage(omniBlade,50,225, 150,75);
+				}
+				else if(playerChoice == 2)
+				{
+					context.drawImage(bubbleShield,50,225, 150,75);
+				}
+				else if(playerChoice == 3)
+				{
+					context.drawImage(redShield,50,225, 150,75);
+				}
+			}
 		}
 	}
 
@@ -293,25 +331,6 @@ function gameloop()
     update();
     draw();
     window.requestAnimationFrame(gameloop);
-}
-
-function animate() 
-{
-	
-    current = new Date().getTime(); // update current
-    if (current - initial >= 500) { // check is greater than 500 ms
-        currentFrame = (currentFrame + 1) % frames; // update frame
-        initial = current; // reset initial
-    } 
-	healthBar();
-}
-function animateEnemy() 
-{
-    enemyCurrent = new Date().getTime(); // update current
-    if (enemyCurrent - enemyInitial >= 500) { // check is greater than 500 ms
-        enemyCurrentFrame = (enemyCurrent + 1) % enemyFrames; // update frame
-        enemyInitial = enemyCurrent; // reset initial
-    } 
 }
 
 // Draw a HealthBar on Canvas, used to indicate players health
@@ -384,10 +403,13 @@ function enemyChoose()
 
 function buttonOnClick1() //Defence OmniBlade, Attack PlasmaRifle
 {
+	playerChoice = 1;
 	if(pauseInput === false)
 	{
 		pauseInput = true;
 		enemyChoose();
+		drawWeapons = true;
+		draw();
 		setTimeout(battle1,3000);
 		
 	}
@@ -395,10 +417,13 @@ function buttonOnClick1() //Defence OmniBlade, Attack PlasmaRifle
 
 function buttonOnClick2() //Defence Bubble Shield,Attack Grenade
 {
+	playerChoice = 2;
 	if(pauseInput === false)
 	{
 		pauseInput = true;
 		enemyChoose();
+		drawWeapons = true;
+		draw();
 		setTimeout(battle2,3000);
 		
 	}
@@ -406,10 +431,13 @@ function buttonOnClick2() //Defence Bubble Shield,Attack Grenade
 
 function buttonOnClick3() //Defence Power Shield, Attack Plasma Blade
 {
+	playerChoice = 3;
 	if(pauseInput === false)
 	{
 		pauseInput = true;
 		enemyChoose();
+		drawWeapons = true;
+		draw();
 		setTimeout(battle3,3000);
 		
 	}
@@ -417,14 +445,14 @@ function buttonOnClick3() //Defence Power Shield, Attack Plasma Blade
 
 function battle1() //resets input and shows animation
 {
-	
+
 		if(defenceOrOffence == 0) //0 is for ATTACK
 		{
 			if(gameLost === false)
 			{
 				if(enemyRandom == 1)
 				{
-					context.drawImage(particleRifle,300,225, 150,75);
+
 					gameobjects[1].health = gameobjects[1].health - 5; //Element Rifle vs Magic Shield
 				}
 		
@@ -472,6 +500,7 @@ function battle1() //resets input and shows animation
 		}
 		
 	pauseInput = false;
+	drawWeapons = false;
 }
 
 function battle2() //resets input and shows animation
@@ -523,6 +552,7 @@ function battle2() //resets input and shows animation
 			defenceOrOffence = 0;
 		}
 	pauseInput = false;
+	drawWeapons = false;
 }
 
 function battle3() //resets input and shows animation
@@ -574,6 +604,7 @@ function battle3() //resets input and shows animation
 			defenceOrOffence = 0;
 		}
 	pauseInput = false;
+	drawWeapons = false;
 }
 
 function winLoss() //Check for win or loss condition
