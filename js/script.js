@@ -126,6 +126,7 @@ var gameobjects = [player, new GameObject("NPC", "./img/enemyFinal.png", 384, 30
 // Process keyboard input event
 function input(event) 
 {
+
     if (event.type === "keydown") {
         switch (event.keyCode) {
             case 37:
@@ -148,7 +149,6 @@ function input(event)
 	{
         gamerInput = new GamerInput("None"); //No Input
     }
-
 }
 
 function update() 
@@ -328,6 +328,7 @@ function gameloop()
 {
     update();
     draw();
+    window.requestAnimationFrame(gameloop);
 }
 
 // Draw a HealthBar on Canvas, used to indicate players health
@@ -640,6 +641,10 @@ function win()
 	}
 	gameWon = true;
 }
+
+
+// Handle Active Browser Tag Animation
+window.requestAnimationFrame(gameloop);
 
 
 
